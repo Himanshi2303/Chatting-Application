@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Message Box</title>
+    <link rel="stylesheet" href="message-box.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <div class="container">
+        <div class="rooms-list">
+            <div class="search">
+                <input id="search-input" type="text" placeholder="Type room name">
+                <button><i class="fa-solid fa-magnifying-glass"></i></button>
+            </div>
+            <div class="search-suggestions hidden" id="search-suggestions">
+                
+                
+            </div>
+            <div class="rooms">
+                <a href="#" >College</a>
+                <a href="#">Family</a>
+                <a href="https://google.com">Office</a>
+                <a href="#">Relatives</a>
+                <a href="#">Close Friends</a>
+                <a href="#">Office Friends</a>
+                <a href="#">Gym friends</a>
+                <a href="#">School Friends</a>
+                <a href="#">Movies</a>
+            
+            </div>
+        </div>
+        <div class="chat-box">
+            <div class="chat-box-header">
+                <button class="back-btn"><i class="fa-solid fa-arrow-left"></i></button>
+                <h2>Friends</h2>
+                <button><i class="fa-solid fa-ellipsis-vertical"></i></button>
+            </div>
+            <div class="message-box">
+                <div class="receive-msg-box">
+                    <p class="username">Tharakaramudu</p>
+                    <p class="message">Hey, How are you? Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus libero nobis, dicta, dolore quae accusantium eaque sunt beatae, consequatur labore expedita in quo natus eveniet a harum unde rerum deleniti!</p>
+                </div>
+                <div class="sender-msg-box">
+                    <p class="username">Ahammmed</p>
+                    <p class="message">Good, What about you?</p>
+                </div>
+                <div class="receive-msg-box">
+                    <p class="username">Tharakaramudu</p>
+                    <p class="message">Hey, How are you? Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus libero nobis, dicta, dolore quae accusantium eaque sunt beatae, consequatur labore expedita in quo natus eveniet a harum unde rerum deleniti!</p>
+                </div>
+                <div class="sender-msg-box">
+                    <p class="username">Ahammmed</p>
+                    <p class="message">Good, What about you?</p>
+                </div>
+                
+            </div>
+            <div class="input-box">
+                <input type="text" placeholder="Type a message">
+                <button><i class="fa-solid fa-paper-plane"></i></button>
+            </div>
+        </div>
+
+    </div>
+    <script src="message-box.js"></script>
+</body>
+</html>

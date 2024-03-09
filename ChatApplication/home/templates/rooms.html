@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rooms | Project 1</title>
+    {% load static %}
+    <link rel="stylesheet" href="/static/rooms.css">
+</head>
+
+<body>
+    <div class="nav-bar">
+        <h1>Chats</h1>
+    </div>
+    <div class="hero-section">
+        <div class="available-rooms">
+            <h2>Available Groups</h2>
+            {% for room in rooms %}
+                <li><span>{{room}}</span><a href="{% url "room" room.slug %}">Join</a> </li>
+            {% endfor %}
+        </div>
+        <div class="room-search">
+            <form method='POST'>
+                {% csrf_token %}
+                <div class="input-label-box">
+                    <label for="room-input">Enter Group Name</label>
+                    <input type="text" id='room-input' name='room_name'>
+                </div>
+                <button>Enter</button>
+
+            </form>
+
+            <!-- Neeed to Manage messsages if room is not exists -->
+            {% if messages %}  
+            {% for message in messages  %}
+            <h4>{{ message}}</h4>
+            {% endfor %}
+            {% endif %}
+        </div>
+
+
+    </div>
+
+</body>
+
+</html>

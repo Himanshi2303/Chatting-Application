@@ -1,0 +1,96 @@
+/* styles.css or within <style> tags in HTML */
+body {
+    font-family: Arial, sans-serif;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: repeating-linear-gradient(45deg, rgba(194, 194, 194,0.1) 0px, rgba(194, 194, 194,0.1) 2px,transparent 2px, transparent 4px),linear-gradient(90deg, rgb(255,255,255),rgb(255,255,255),rgb(255,255,255));
+}
+
+.container {
+    max-width: 350px;
+    padding: 30px;
+    background-color: #fff;
+    background-image: repeating-linear-gradient(135deg, hsla(190,0%,89%,0.15) 0px, hsla(190,0%,89%,0.15) 0px,transparent 0px, transparent 1px,hsla(190,0%,89%,0.15) 1px, hsla(190,0%,89%,0.15) 4px,transparent 4px, transparent 5px,hsla(190,0%,89%,0.15) 5px, hsla(190,0%,89%,0.15) 10px),repeating-linear-gradient(45deg, hsla(190,0%,89%,0.15) 0px, hsla(190,0%,89%,0.15) 0px,transparent 0px, transparent 1px,hsla(190,0%,89%,0.15) 1px, hsla(190,0%,89%,0.15) 4px,transparent 4px, transparent 5px,hsla(190,0%,89%,0.15) 5px, hsla(190,0%,89%,0.15) 10px),repeating-linear-gradient(0deg, hsla(190,0%,89%,0.15) 0px, hsla(190,0%,89%,0.15) 0px,transparent 0px, transparent 1px,hsla(190,0%,89%,0.15) 1px, hsla(190,0%,89%,0.15) 4px,transparent 4px, transparent 5px,hsla(190,0%,89%,0.15) 5px, hsla(190,0%,89%,0.15) 10px),repeating-linear-gradient(90deg, hsla(190,0%,89%,0.15) 0px, hsla(190,0%,89%,0.15) 0px,transparent 0px, transparent 1px,hsla(190,0%,89%,0.15) 1px, hsla(190,0%,89%,0.15) 4px,transparent 4px, transparent 5px,hsla(190,0%,89%,0.15) 5px, hsla(190,0%,89%,0.15) 10px),linear-gradient(90deg, rgb(251,251,251),rgb(251,251,251));
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.signup-heading {
+    text-align: center;
+    color: #333;
+}
+p{
+    font-size: 0.9rem;
+}
+
+
+
+.form input[type="text"],
+.form input[type="email"],
+.form input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 10px;
+    background-image: repeating-linear-gradient(135deg, rgba(0,0,0,0.04) 0px, rgba(0,0,0,0.04) 2px,transparent 2px, transparent 4px),linear-gradient(135deg, rgb(165, 230, 235),rgb(29, 32, 232));
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+
+.create-account{
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+    text-decoration: none;
+    color: #555;
+}
+
+
+li{
+    font-size: 0.8rem;
+}
+
+span{
+    font-size: 0.7rem;
+}
+
+/* Media Queries for Responsive Design */
+@media screen and (max-width: 768px) {
+    .container {
+        max-width: 90%; /* Adjust the container width for smaller screens */
+    }
+}
+
+/* Additional breakpoints and adjustments */
+@media screen and (max-width: 576px) {
+    .container {
+        padding: 20px; /* Adjust padding for smaller screens */
+    }
+    .submit-btn {
+        font-size: 14px; /* Adjust button font size for smaller screens */
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .container {
+        padding: 10px; /* Further adjust padding for very small screens */
+    }
+    .submit-btn {
+        font-size: 12px; /* Further adjust button font size for very small screens */
+    }
+    /* Additional adjustments for extremely small screens */
+}

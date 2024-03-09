@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{room.name}}</title>
+    {%  load static  %}
+    <link rel="stylesheet" href="/static/message-box.css">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <div class="container">
+        <div class="rooms-list">
+            <div class="search">
+                <input id="search-input" type="text" placeholder="Type group name">
+                <button><i class="fa-solid fa-magnifying-glass"></i></button>
+            </div>
+            <div class="search-suggestions hidden" id="search-suggestions">
+                
+                
+            </div>
+            <div class="rooms">
+                {% for room in rooms  %}
+                <a href="{% url "room" room.slug %}" >{{room.name}}</a>
+                {% endfor %}
+                
+            
+            </div>
+        </div>
+        <div class="chat-box" >
+            <div class="chat-box-header">
+                <a href="/rooms/" class="back-btn"><i class="fa-solid fa-arrow-left"></i></a>
+              
+                <h2>{{room.name}}</h2>
+                <button><i class="fa-solid fa-ellipsis-vertical"></i></button>
+            </div>
+            <div class="message-box" id="chat-messages">
+
+                {% for m in messages %}
+                {% if m.user.username == user.username %}
+                    <div class="sender-msg-box">
+                        <p class="username">{{ m.user.username }}</p>
+                        <p class="message">{{ m.content }}</p>
+                    </div>
+                    {% else %}
+                    <div class="receive-msg-box">
+                        <p class="username">{{ m.user.username }}</p>
+                        <p class="message">{{ m.content }}</p>
+                    </div>
+
+                    {% endif %}
+            
+                     {% endfor %}
+                
+            </div>
+            <form class="input-box" method='POST'>
+                <input type="text" placeholder="Type a message" name="content" id="chat-message-input">
+                <button  id="chat-message-submit"><i class="fa-solid fa-paper-plane"></i></button>
+            </form>
+        </div>
+
+    </div>
+    {{ room.slug|json_script:"json-roomname" }}
+    {{ request.user.username|json_script:"json-username" }}
+    {% comment %} <script src="/static/message-box.js"></script> {% endcomment %}
+    <script>
+        
+const roomName = JSON.parse(document.getElementById('json-roomname').textContent);
+const userName = JSON.parse(document.getElementById('json-username').textContent);
+console.log(userName);
+const chatSocket = new WebSocket(
+    'ws://'
+    + window.location.host
+    + '/ws/'
+    + roomName
+    + '/'
+);
+
+chatSocket.onclose = function(e) {
+    console.log('onclose')
+}
+
+chatSocket.onmessage = function(e) {
+    const data = JSON.parse(e.data);
+
+    if (data.message) {
+        console.log(data.username);
+        console.log("hey");
+        if(data.username===userName){
+        document.querySelector('#chat-messages').innerHTML += ('<div class="sender-msg-box"'+' <p class="username">'+data.username+'</p>'+' <p class="message">'+ data.message +'</p></div>');
+
+        }
+        else{
+        document.querySelector('#chat-messages').innerHTML += ('<div class="receive-msg-box"'+' <p class="username">'+data.username+'</p>'+' <p class="message">'+ data.message +'</p></div>');
+
+        }
+                                                        
+    } 
+    
+
+    scrollToBottom();
+};
+
+document.querySelector('#chat-message-input').focus();
+document.querySelector('#chat-message-input').onkeyup = function(e) {
+    if (e.keyCode === 13) {
+        document.querySelector('#chat-message-submit').click();
+    }
+};
+
+document.querySelector('#chat-message-submit').onclick = function(e) {
+    e.preventDefault()
+
+    const messageInputDom = document.querySelector('#chat-message-input');
+    const message = messageInputDom.value;
+
+    if (message.length>0){
+        console.log({
+            'message': message,
+            'username': userName,
+            'room': roomName
+        })
+    
+        chatSocket.send(JSON.stringify({
+            'message': message,
+            'username': userName,
+            'room': roomName
+        }));
+    
+    }
+    messageInputDom.value = '';
+
+    return false
+};
+
+/**
+* A function for finding the messages element, and scroll to the bottom of it.
+*/
+function scrollToBottom() {
+    let objDiv = document.getElementById("chat-messages");
+    objDiv.scrollTop = objDiv.scrollHeight;
+}
+
+// Add this below the function to trigger the scroll on load.
+scrollToBottom();
+
+
+
+// JS functionalites
+
+const searchInputElement = document.getElementById('search-input');
+const roomsElement = document.querySelector('.rooms');
+const suggestionsBox = document.getElementById('search-suggestions');
+
+searchInputElement.addEventListener('input', () => {
+    const searchTerm = searchInputElement.value.toLowerCase();
+    const roomAnchors = roomsElement.querySelectorAll('a');
+    const suggestions = [];
+
+    roomAnchors.forEach(anchor => {
+        const roomName = anchor.textContent.toLowerCase();
+        if (roomName.includes(searchTerm)) {
+            suggestions.push(`<a href="${anchor.href}">${anchor.textContent}</a>`);
+        }
+    });
+
+    displaySuggestions(suggestions);
+});
+
+function displaySuggestions(suggestions) {
+    if (suggestions.length > 0) {
+        suggestionsBox.innerHTML = suggestions.join('');
+        suggestionsBox.classList.remove('hidden');
+        roomsElement.style.display = 'none'; // Hide rooms div
+    } else {
+        hideSuggestions();
+    }
+}
+
+function hideSuggestions() {
+    suggestionsBox.classList.add('hidden');
+    roomsElement.style.display = 'flex'; // Show rooms div
+}
+
+searchInputElement.addEventListener('blur', () => {
+    if (!searchInputElement.value.trim()) {
+        hideSuggestions();
+    }
+});
+
+    </script>
+
+
+</body>
+</html>

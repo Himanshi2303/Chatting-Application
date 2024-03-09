@@ -1,0 +1,157 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.hidden{
+    display: none;
+}
+body{
+    background: url(/static/images/rooms-page-background.jpg) center center/cover;
+}
+
+
+.nav-bar{
+    display: flex;
+    height: 12vh;
+    width: 100%;
+    align-items: center;
+    /* background-color: #274c77; */
+}
+.logo-title{
+    width: 50%;
+    text-align: center;
+    
+}
+.logo-title h1{
+    color: white;
+    margin-left: 20px;
+    text-shadow: 2px 2px 5px black;
+    
+}
+
+
+.options-menu{
+    width: 45%;
+    display: flex;
+    justify-content: space-between;
+    
+}
+.options-menu li{
+    list-style: none;
+    transition: 0.5s;
+}
+.options-menu li a{
+    color: white;
+    text-decoration: none;
+    text-shadow: 0 0 4px black;
+}
+
+.options-menu li:hover{
+    transform: scale(1.22);
+    font-size: 1rem;
+
+}
+
+
+
+
+
+
+@media screen and (max-width: 576px) { 
+    .options-menu-small{
+        display: inline;
+    }
+    
+    .options-menu{
+        display: none;
+    }
+    .logo-title h1{
+        font-size: 1.5rem;
+    }
+    /* styles */ }
+
+
+.options-menu-small{
+    /* display: none; */
+    width: 45%;
+    text-align: end;
+}
+
+.options-menu-small .bars{
+    color: white;
+    text-shadow: 0 0 2px black  ;
+    font-size: 2rem;
+   cursor: pointer;
+  
+}
+.options-menu-small .close{
+    font-size: 1.5rem;
+    color: white;
+    text-shadow: 0 0 2px black  ;
+    cursor: pointer;
+
+}
+.options-menu-container{
+    position: absolute;
+    top:12vh;
+    right: 0px;
+    padding: 10px;
+    border-bottom-left-radius: 10px;
+    width: max-content;
+    background-image: repeating-linear-gradient(135deg, rgba(0,0,0,0.04) 0px, rgba(0,0,0,0.04) 2px,transparent 2px, transparent 4px),linear-gradient(135deg, rgb(165, 230, 235),rgb(29, 32, 232));
+}
+
+
+.options-menu-container li{
+    list-style: none;
+    transition: 0.5s;
+    margin: 3px;
+}
+.options-menu-container li a{
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    text-shadow: 0 0 2px black;
+    
+}
+
+.options-menu-container li:hover{
+    transform: scale(1.22);
+    font-size: 1rem;
+
+}
+
+.hero-section{
+    width: 100vw;
+    height: 80vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+   
+
+}
+.content-1 , .content-2{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+
+
+}
+.content-1 h2, p{
+    font-size: 2rem;
+    font-weight: bold;
+    filter: drop-shadow( 1px 1px 2px #000);
+
+
+}
+
+.content-2 p{
+    filter: drop-shadow( 1px 1px 2px #000);
+}
+
+
+h1{
+    color: red;
+}

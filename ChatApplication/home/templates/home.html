@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home | project 1</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'home-page-style.css' %}" />
+  </head>
+  <body>
+    <div class="nav-bar">
+      <div class="logo-title">
+        <h1>Chat App</h1>
+      </div>
+      <div class="options-menu-small hidden">
+        <span class="bars">&#8801;</span>
+        <span class="close hidden">&#10006; </span>
+      </div>
+      <div class="options-menu">
+        <li><a href="#">Home</a></li>
+        <li><a href="{% url "rooms" %}">Chat</a></li>
+        <li><a href="news/">News</a></li>
+        {% if request.user.is_authenticated %}
+        <li><a href="logout/">Logout</a></li>
+
+        {% else %}
+        <li><a href="login/">Login</a></li>
+        <li><a href="signup/">Sign up</a></li>
+        {% endif %}
+
+        
+      </div>
+    </div>
+    <div class="options-menu-container hidden">
+      <li><a href="#">Home</a></li>
+      <li><a href="{% url "rooms" %}">Chats</a></li>
+      
+      {% if request.user.is_authenticated %}
+      <li><a href="logout/">Logout</a></li>
+
+      {% else %}
+      <li><a href="login/">Login</a></li>
+      <li><a href="signup/">Sign up</a></li>
+      {% endif %}
+      
+    </div>
+    {% comment %} <a href="{% url "room_1" %}">ROom</a> {% endcomment %}
+    <div class="hero-section">
+      <div class="content-1">
+        <p>Connect with ur loved ones </p>
+        <p>in a ease</p>
+      </div>
+      <div class="content-2">
+        <p>Go through the Groups to connect..</p>
+      </div>
+    </div>
+    <script>
+      const show_options_menu_element = document.querySelector(".bars");
+      const close_options_menu_element = document.querySelector(".close");
+      const options_menu_container = document.querySelector(
+        ".options-menu-container"
+      );
+      show_options_menu_element.addEventListener("click", (e) => {
+        options_menu_container.classList.toggle("hidden");
+        close_options_menu_element.classList.toggle("hidden");
+        show_options_menu_element.classList.toggle("hidden");
+      });
+      close_options_menu_element.addEventListener("click", (event) => {
+        options_menu_container.classList.toggle("hidden");
+        close_options_menu_element.classList.add("hidden");
+        show_options_menu_element.classList.toggle("hidden");
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Project 1</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static "login-signup.css" %}">
+
+</head>
+<body>
+    <div class="container">
+       
+        <h1 class="signup-heading">Login</h1>
+        {% if messages  %}
+        {% for message in messages  %}
+        <p> {{message }}</p>
+        {% endfor %}
+       
+        {% endif %}
+        <form method="POST" class="form">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="submit-btn" type="submit">Login</button>
+            <span ><a class="create-account" href="{% url 'signup' %}">Dont have Account Create</a><a class="create-account" href="{% url "password-reset" %}">Forgot Password</a></span>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,94 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+body{
+    height: 100vh;
+    width: 100vw;
+    background: url(/static/images/rooms-page-background.jpg) no-repeat center center/cover ;
+
+}
+
+
+.nav-bar{
+    color: white;
+    height: 12vh;
+    width: 100vw;
+    box-shadow: 0 0 5px black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+ 
+}
+h1{
+    filter: drop-shadow(1px 1px 2px black)
+}
+.hero-section{
+    height: 80vh;
+    width: 100vw;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  
+} 
+.available-rooms, .room-search{
+    width: 25%;
+    padding: 30px;
+    border: solid 2px black;
+    border-radius: 10px;
+    /* background-color: azure; */
+    color: azure;
+}
+h2{
+    margin-bottom: 15px;
+}
+
+.input-label-box{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+
+}
+
+label{
+    margin-bottom: 5px;
+}
+#room-input{
+    height: 30px;
+    border-radius: 5px;
+    padding-left: 4px;
+    background: transparent;
+
+}
+.room-search button{
+    padding: 5px 10px;
+    border-radius: 5px;
+    
+}
+
+.available-rooms li{
+    padding: 15px;
+    list-style: none;
+    width: 70%;
+    border: solid 1px gray;
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 10px;
+}
+.available-rooms li a{
+    text-decoration: none;
+}
+
+
+    
+@media screen and (max-width: 650px) {
+    .hero-section {
+        flex-direction: column;
+    }
+    .available-rooms, .room-search{
+        width: 70%;
+    }
+}
