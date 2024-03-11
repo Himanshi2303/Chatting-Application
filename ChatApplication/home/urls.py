@@ -14,6 +14,8 @@ urlpatterns = [
     path('check_username/',views.check_username,name='check_username'),
     path('generate_otp/',views.generate_otp,name='generate_otp'),
     path('check_otp/',views.check_otp,name='check_otp'),
+    path('news/',views.news,name='news'),
+
 
 
     
