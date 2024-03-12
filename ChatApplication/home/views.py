@@ -7,6 +7,8 @@ from django.contrib.auth.decorators import login_required
 from .forms import  LoginForm,SignupForm
 import json
 import secrets
+import requests
+
 
 
 # Create your views here.
@@ -127,6 +129,59 @@ def check_otp(request):
         return JsonResponse({'matched':matched})
     else:
         return JsonResponse({'matched':matched})
+
+
+#changes ksz
+    
+#def news(request):
+#    news_url = "https://news.google.com/home?hl=en-IN&gl=IN&ceid=IN:en"
+#    return redirect(news_url)
+
+
+#def news(request):
+    #api_key = 'f6bfad6599884b1a89334d19a519c937'
+    #url = f'https://newsdata.io/api/1/news?apikey={api_key}&q=news'
+#    api_key = 'pub_3917334754e2486bd0d889a574b424fb67797'
+#    url = f'https://newsdata.io/api/1/news?apikey={api_key}&q=news'  #end point
+
+   # api_key = 'f6bfad6599884b1a89334d19a519c937'
+
+    #url = 'https://newsapi.org/v2/everything?q=Apple&from=2024-03-05&sortBy=popularity&apiKey=f6bfad6599884b1a89334d19a519c937'
+
+#    response = requests.get(url)
+#    data = response.json()
+
+#    articles = data.get('results', [])
+
+#    context = {
+#        'articles': articles
+#    }
+
+#    return render(request, 'news.html', context)
+
+
+#new api 
+
+def news(request):
+    url = 'https://newsapi.org/v2/everything?q=Cricket&from=2024-03-05&sortBy=popularity&apiKey=f6bfad6599884b1a89334d19a519c937'
+
+    crypto_news = requests.get(url).json()
+
+    a = crypto_news['articles']
+    desc =[]
+    title =[]
+    img =[]
+
+    for i in range(len(a)):
+        f = a[i]
+        title.append(f['title'])
+        desc.append(f['description'])
+        img.append(f['urlToImage'])
+    mylist = zip(title, desc, img)
+
+    context = {'mylist': mylist}
+
+    return render(request, 'news.html', context)
 
 
 
