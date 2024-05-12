@@ -163,7 +163,7 @@ def check_otp(request):
 #new api 
 
 def news(request):
-    url = 'https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=dcc1a39d9c1e4674a0fd76cf2e5a1f08%27'
+    url = 'https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=dcc1a39d9c1e4674a0fd76cf2e5a1f08'
 
     crypto_news = requests.get(url).json()
 
